@@ -31,13 +31,13 @@ public class DogWalker
      */
     public int walkDogs(int hour)
     { 
-        int dogsAvailable = DogWalkCompany.numAvailableDogs(hour);
+        int dogsAvailable = company.numAvailableDogs(hour);
         if (maxDogs >= dogsAvailable) 
         {
-            DogWalkCompany.updateDogs(hour, dogsAvailable);
+            company.updateDogs(hour, dogsAvailable);
             return dogsAvailable;
         }
-        DogWalkCompany.updateDogs(hour, maxDogs);
+        company.updateDogs(hour, maxDogs);
         return maxDogs;
     }
 
@@ -50,10 +50,10 @@ public class DogWalker
     public int dogWalkShift(int startHour, int endHour)
     { 
         int pay = 0;
-        for (int i = startHour; i < endHour; i++)
+        for (int i = startHour; i <= endHour; i++)
         {
             int numWalked = walkDogs(i);
-            if ((numWalked == maxDogs) || ((i >= 9) && i <= 17))
+            if ((numWalked == maxDogs) || ((i >= 9) && (i <= 17)))
             {
                 pay += 3;
             }
